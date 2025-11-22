@@ -1,139 +1,90 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daal Menu - Kusha Family Veg Restaurant</title>
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #fff4e0; margin: 0; color: #333; }
-    header { text-align: center; padding: 20px; background: #ffffff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    header h1 { margin: 10px 0 0; }.menu-items {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kusha Family Veg Restaurant</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+        header { background: #4caf50; color: white; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; }.menu-container { width: 90%; margin: 15px auto; }
+    .item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .name { font-size: 18px; font-weight: bold; }
+    .price { color: #444; margin-top: 4px; }
 
-.item {
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    .qty-box { display: flex; align-items: center; gap: 10px; }
+    .qty-btn { background: #4caf50; color: white; border: none; padding: 5px 10px; font-size: 18px; border-radius: 5px; cursor: pointer; }
+    .qty-number { font-size: 18px; width: 30px; text-align: center; }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
+    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 15px; box-shadow: 0 -2px 6px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; }
+    #cartTotal { font-size: 20px; font-weight: bold; }
 
-.qty-box button {
-  background: #ff5722;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
-}
+    .order-btn { background: #ff5722; color: white; padding: 12px 18px; font-size: 18px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; }
 
-.qty-box span {
-  font-size: 18px;
-  margin: 0 10px;
-  font-weight: bold;
-}
+    .hidden { display: none; }
+</style>
 
-.add-btn {
-  background: #25d366;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.cart {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #4a2c00;
-  color: white;
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-}
-
-.order-btn {
-  background: #ffcc00;
-  color: black;
-  padding: 8px 12px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-  </style>
 </head>
-<body><header>
-  <h1>Daal Menu - Kusha Family Veg Restaurant</h1>
-</header><div class="menu-items">  <div class="item">
-    <div class="row"><span><b>Tadka Daal</b> - ₹120</span></div>
-    <div class="row qty-box">
-      <button onclick="dec(1,120)">-</button>
-      <span id="qty-1">0</span>
-      <button onclick="inc(1,120)">+</button>
-    </div>
-  </div>  <div class="item">
-    <div class="row"><span><b>Dal Makhani</b> - ₹150</span></div>
-    <div class="row qty-box">
-      <button onclick="dec(2,150)">-</button>
-      <span id="qty-2">0</span>
-      <button onclick="inc(2,150)">+</button>
-    </div>
-  </div>  <div class="item">
-    <div class="row"><span><b>Chana Dal</b> - ₹100</span></div>
-    <div class="row qty-box">
-      <button onclick="dec(3,100)">-</button>
-      <span id="qty-3">0</span>
-      <button onclick="inc(3,100)">+</button>
-    </div>
-  </div></div><div class="cart">
-  <div id="cartStatus">Cart: 0 Items | Total: ₹0</div>
-  <button class="order-btn" onclick="location.href='order.html'">Order Now</button>
+<body><header>Kusha Family Veg Restaurant</header><div class="menu-container" id="menuList"></div><div class="footer" id="footerBar">
+    <div id="cartTotal">₹0</div>
+    <button class="order-btn" onclick="goToOrder()">Order Now</button>
 </div><script>
-let total = 0;
-let items = 0;
+    const MENU = [
+        { id: 1, name: "Dal Fry", price: 120 },
+        { id: 2, name: "Paneer Butter Masala", price: 160 },
+        { id: 3, name: "Veg Biryani", price: 140 },
+        { id: 4, name: "Tandoori Roti", price: 12 }
+    ];
 
-function inc(id, price) {
-  let q = parseInt(document.getElementById(qty-${id}).innerText);
-  q++;
-  document.getElementById(qty-${id}).innerText = q;
-  items++;
-  total += price;
-  updateCart();
-}
+    let CART = {};
 
-function dec(id, price) {
-  let q = parseInt(document.getElementById(qty-${id}).innerText);
-  if (q > 0) {
-    q--;
-    document.getElementById(qty-${id}).innerText = q;
-    items--;
-    total -= price;
-    updateCart();
-  }
-}
+    function loadMenu() {
+        let html = "";
+        MENU.forEach(item => {
+            html += `
+            <div class="item">
+                <div>
+                    <div class="name">${item.name}</div>
+                    <div class="price">₹${item.price}</div>
+                </div>
+                <div class="qty-box">
+                    <button class="qty-btn" onclick="decrease(${item.id})">-</button>
+                    <div class="qty-number" id="qty_${item.id}">0</div>
+                    <button class="qty-btn" onclick="increase(${item.id})">+</button>
+                </div>
+            </div>`;
+        });
+        document.getElementById("menuList").innerHTML = html;
+    }
 
-function updateCart() {
-  if (items < 0) items = 0;
-  if (total < 0) total = 0;
+    function increase(id) {
+        if (!CART[id]) CART[id] = 0;
+        CART[id]++;
+        updateQty(id);
+    }
 
-  document.getElementById('cartStatus').innerText = Cart: ${items} Items | Total: ₹${total};
-  localStorage.setItem("total", total);
-  localStorage.setItem("items", items);
-}
+    function decrease(id) {
+        if (CART[id] && CART[id] > 0) CART[id]--;
+        updateQty(id);
+    }
+
+    function updateQty(id) {
+        document.getElementById(qty_${id}).textContent = CART[id] || 0;
+        updateCartTotal();
+    }
+
+    function updateCartTotal() {
+        let total = 0;
+        Object.keys(CART).forEach(id => {
+            let item = MENU.find(i => i.id == id);
+            total += CART[id] * item.price;
+        });
+        document.getElementById("cartTotal").innerText = "₹" + total;
+    }
+
+    function goToOrder() {
+        localStorage.setItem("cartData", JSON.stringify(CART));
+        window.location.href = "order.html";
+    }
+
+    loadMenu();
 </script></body>
 </html>

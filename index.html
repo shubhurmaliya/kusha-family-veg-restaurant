@@ -1,93 +1,137 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kusha Family Veg Restaurant</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffb84d; /* Full page bhagwa background */
-      color: #333;
-    }
-    header {
-      text-align: center;
-      padding: 20px;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    header img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    header h1 {
-      margin: 10px 0 0;
-      font-size: 24px;
-      font-weight: 800;
-    }.category-menu {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 20px;
-  gap: 16px;
-}
-.category-menu a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 15px;
-  background: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: 0.2s ease;
-}
-.category-menu a:hover {
-  transform: translateY(-3px);
-  background: #ffe0b2;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kusha Family Veg Restaurant</title>
 
-footer {
-  margin-top: 40px;
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom, #ff8000, #ffb84d);
+  color: white;
   text-align: center;
-  padding: 20px;
-  background: #ffffff;
-  border-top: 1px solid #ddd;
-}
-footer a {
-  text-decoration: none;
-  font-weight: 700;
-  color: #000;
-  display: block;
-  margin-bottom: 10px;
-}
-footer p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #555;
 }
 
-  </style>
+header {
+  padding: 15px;
+}
+
+header img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+header h1 {
+  margin: 5px 0;
+  font-size: 28px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.menu button {
+  background: white;
+  color: #ff5722;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cart {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #4a2c00;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  color: white;
+  font-size: 16px;
+}
+
+.cart button {
+  background: #25d366;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.order-btn {
+  background: #00bcd4;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 8px;
+}
+</style>
 </head>
-<body><header>
-  <img src="https://raw.githubusercontent.com/shubhurmaliya/Kusha-Family-Restaurant/main/logo.png.jpg" alt="Logo" />
-  <h1>Kusha Family Veg Restaurant</h1>
-</header><section class="category-menu">
-  <a href="daal.html"><img src="https://via.placeholder.com/40" width="40" height="40">Daal</a>
-  <a href="sabji.html"><img src="https://via.placeholder.com/40" width="40" height="40">Sabji</a>
-  <a href="paneer.html"><img src="https://via.placeholder.com/40" width="40" height="40">Paneer</a>
-  <a href="rice.html"><img src="https://via.placeholder.com/40" width="40" height="40">Rice</a>
-  <a href="papad.html"><img src="https://via.placeholder.com/40" width="40" height="40">Papad</a>
-  <a href="roti.html"><img src="https://via.placeholder.com/40" width="40" height="40">Roti</a>
-  <a href="thali.html"><img src="https://via.placeholder.com/40" width="40" height="40">Thali</a>
-  <a href="snacks.html"><img src="https://via.placeholder.com/40" width="40" height="40">Snacks / Fast Food</a>
-</section><footer>
-  <p><strong>Address:</strong> Mauhari, Near Toll Plaza Mauhari Between Satna Panna Road</p>
-  <p><strong>Email:</strong> kushafamilyvegrestaurant2022@gmail.com</p>
-  <a href="contact.html">Contact Us - 8770473265</a>
-  <p>Copyright © kushafamilyvegrestaurant 2018 - All rights reserved</p>
-</footer></body>
+
+<body>
+
+<header>
+  <img src="logo.png.jpg" alt="Kusha Family Veg Restaurant">
+  <h1>KUSHA FAMILY VEG RESTAURANT</h1>
+</header>
+
+
+<div class="menu">
+  <button onclick="location.href='thali.html'">🥗 Thali</button>
+  <button onclick="location.href='daal.html'">🍲 Daal</button>
+  <button onclick="location.href='sabji.html'">🥦 Sabji</button>
+  <button onclick="location.href='paneer.html'">🧀 Paneer</button>
+  <button onclick="location.href='rice.html'">🍛 Rice</button>
+  <button onclick="location.href='roti.html'">🍞 Roti</button>
+  <button onclick="location.href='papad.html'">🍘 Papad</button>
+  <button onclick="location.href='snacks.html'">🍟 Snacks / Fast Food</button>
+</div>
+
+
+<div class="cart" id="cartBar">
+  <div id="cartStatus">Cart: 0 Items | Total: ₹0</div>
+
+  <button class="order-btn" onclick="location.href='order.html'">Order Now</button>
+</div>
+
+
+<script>
+// -------- CART SYSTEM ----------
+let total = localStorage.getItem("total") ? Number(localStorage.getItem("total")) : 0;
+let items = localStorage.getItem("items") ? Number(localStorage.getItem("items")) : 0;
+
+document.getElementById("cartStatus").innerText =
+  Cart: ${items} Items | Total: ₹${total};
+
+
+// -------- GLOBAL + / - BUTTON SYSTEM ----------
+function increase(id) {
+  let qty = document.getElementById(id);
+  qty.innerText = Number(qty.innerText) + 1;
+}
+
+function decrease(id) {
+  let qty = document.getElementById(id);
+  if (Number(qty.innerText) > 1) {
+    qty.innerText = Number(qty.innerText) - 1;
+  }
+}
+</script>
+
+</body>
 </html>

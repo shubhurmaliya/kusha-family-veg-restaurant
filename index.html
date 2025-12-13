@@ -3,134 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kusha Family Veg Restaurant</title>
-
+<title>Kusha Family Restaurant</title>
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  background: linear-gradient(to bottom, #ff8000, #ffb84d);
-  color: white;
-  text-align: center;
-}
-
-header {
-  padding: 15px;
-}
-
-header img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto 10px auto;
-}
-
-header h1 {
-  margin: 5px 0;
-  font-size: 28px;
-}
-
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.menu button {
-  background: white;
-  color: #ff5722;
-  border: none;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.cart {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #4a2c00;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  color: white;
-  font-size: 16px;
-}
-
-.cart button {
-  background: #25d366;
-  border: none;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.order-btn {
-  background: #00bcd4;
-  padding: 8px 15px;
-  border-radius: 8px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  margin-left: 8px;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(#ff9800,#ffb347,#ffd194);}
+header{text-align:center;padding:25px 15px;color:white;}
+header img{width:90px;height:90px;border-radius:50%;object-fit:cover;background:#fff;padding:6px;}
+header h1{margin:10px 0 5px;font-size:28px}
+header p{margin:0;font-size:14px}
+#home{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:20px;}
+.cat-btn{background:white;border:none;border-radius:14px;padding:18px;font-size:18px;color:#ff6b00;font-weight:bold;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.15);}
+.cat-btn:active{transform:scale(.97)}
+button{touch-action:manipulation}
+#menu{display:none;padding:15px 15px 120px;}
+.menu-item{background:white;border-radius:12px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+.menu-item span{font-weight:bold}
+.qty{width:55px;padding:6px;}
+.add-btn{background:#1d3557;color:white;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;}
+#cart-bar{position:fixed;bottom:0;left:0;right:0;background:#2b1f13;color:white;padding:12px;display:none;z-index:10;}
+#cart-bar button{background:#25D366;color:white;border:none;padding:10px 14px;border-radius:8px;font-weight:bold;cursor:pointer;}
+#form{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center;z-index:20;}
+.form-box{background:white;width:90%;max-width:420px;border-radius:12px;padding:15px;}
+.form-box input,.form-box select{width:100%;padding:10px;margin-bottom:10px;}
+.wh-btn{width:100%;background:#25D366;color:white;border:none;padding:12px;font-size:16px;border-radius:10px;cursor:pointer;}
+footer{margin-top:40px;background:#ff6b00;color:white;text-align:center;padding:15px;}
 </style>
 </head>
-
 <body>
 
 <header>
-  <img src="logo.png.jpg" alt="Kusha Family Veg Restaurant">
-  <h1>KUSHA FAMILY VEG RESTAURANT</h1>
+  <img src="./logo.jpg" alt="Kusha Family Restaurant Logo">
+  <h1>Kusha Family Restaurant</h1>
+  <p>Mauhari Satna-Panna Road · 10 AM – 2 AM</p>
 </header>
 
-
-<div class="menu">
-  <button onclick="location.href='thali.html'">🥗 Thali</button>
-  <button onclick="location.href='daal.html'">🍲 Daal</button>
-  <button onclick="location.href='sabji.html'">🥦 Sabji</button>
-  <button onclick="location.href='paneer.html'">🧀 Paneer</button>
-  <button onclick="location.href='rice.html'">🍛 Rice</button>
-  <button onclick="location.href='roti.html'">🍞 Roti</button>
-  <button onclick="location.href='papad.html'">🍘 Papad</button>
-  <button onclick="location.href='snacks.html'">🍟 Snacks / Fast Food</button>
+<div id="home">
+  <button class="cat-btn" data-cat="Thali">🍽 Thali</button>
+  <button class="cat-btn" data-cat="Daal">🥣 Daal</button>
+  <button class="cat-btn" data-cat="Sabji">🥦 Sabji</button>
+  <button class="cat-btn" data-cat="Paneer">🧀 Paneer</button>
+  <button class="cat-btn" data-cat="Rice">🍚 Rice</button>
+  <button class="cat-btn" data-cat="Roti">🍞 Roti</button>
+  <button class="cat-btn" data-cat="Papad">🍽 Papad</button>
 </div>
 
+<div id="menu"></div>
 
-<div class="cart" id="cartBar">
-  <div id="cartStatus">Cart: 0 Items | Total: ₹0</div>
-
-  <button class="order-btn" onclick="location.href='order.html'">Order Now</button>
+<div id="cart-bar">
+  <span id="cart-info"></span>
+  <button id="order-btn">Order on WhatsApp</button>
 </div>
 
+<div id="form">
+  <div class="form-box">
+    <h3>Customer Details</h3>
+    <div id="summary"></div>
+    <input id="name" placeholder="Name">
+    <input id="phone" placeholder="Phone">
+    <input id="address" placeholder="Address">
+    <select id="type">
+      <option>Home Delivery</option>
+      <option>Take Away</option>
+      <option>Dine In</option>
+    </select>
+    <button class="wh-btn" id="place-order">Place Order</button>
+  </div>
+</div>
+
+<footer>
+  📞 918770473265 | ✉ kushafamilyvegrestaurant2022@gmail.com<br>
+  © 2025 Kusha Family Restaurant
+</footer>
 
 <script>
-// -------- CART SYSTEM ----------
-let total = localStorage.getItem("total") ? Number(localStorage.getItem("total")) : 0;
-let items = localStorage.getItem("items") ? Number(localStorage.getItem("items")) : 0;
+const menuData={
+Thali:[{n:"Special Thali",p:169}],
+Rice:[{n:"Plain Rice",p:90},{n:"Jeera Rice",p:100},{n:"Veg Pulao",p:120},{n:"Peas Pulao",p:120},{n:"Fried Rice",p:130},{n:"Schezwan Rice",p:140},{n:"Veg Biryani",p:150}],
+Daal:[{n:"Daal Fry",p:119},{n:"Daal Tadka",p:129}],
+Paneer:[{n:"Paneer Butter Masala",p:195},{n:"Kadai Paneer",p:195},{n:"Paneer Masala",p:185},{n:"Paneer Do Pyaza",p:185},{n:"Paneer Tikka Masala",p:205},{n:"Shahi Paneer",p:195},{n:"Paneer Bhurji",p:185},{n:"Palak Paneer",p:185},{n:"Paneer Handi",p:195},{n:"Paneer Chilli",p:205}],
+Sabji:[{n:"Sev Bhaji",p:145},{n:"Baigan Bharta",p:145},{n:"Baigan Masala",p:145},{n:"Soyabean Masala",p:145},{n:"Jeera Aloo",p:125},{n:"Aloo Chhola Masala",p:155},{n:"Matar Masala",p:155},{n:"Aloo Matar",p:155},{n:"Aloo Gobhi",p:135},{n:"Mix Veg",p:145},{n:"Bhindi Fry",p:145},{n:"Bhindi Masala",p:145},{n:"Chhola Masala",p:155}],
+Roti:[{n:"Tandoori Roti",p:15},{n:"Tandoori Butter Roti",p:20},{n:"Tawa Roti",p:15},{n:"Tawa Butter Roti",p:20},{n:"Naan Roti",p:45},{n:"Naan Butter",p:55},{n:"Laccha Paratha",p:45},{n:"Missi Roti",p:35},{n:"Aloo Paratha",p:55},{n:"Paneer Paratha",p:75}],
+Papad:[{n:"Roasted Papad",p:20},{n:"Fried Papad",p:25},{n:"Masala Papad",p:40},{n:"Double Masala Papad",p:50}]
+};
 
-document.getElementById("cartStatus").innerText =
-  Cart: ${items} Items | Total: ₹${total};
+let cart=[];
 
+// Utility to sanitize ID
+function sanitizeId(name){return name.replace(/\s+/g,'');}
 
-// -------- GLOBAL + / - BUTTON SYSTEM ----------
-function increase(id) {
-  let qty = document.getElementById(id);
-  qty.innerText = Number(qty.innerText) + 1;
+// Open Menu dynamically
+function openMenu(cat){
+  document.getElementById("home").style.display="none";
+  const m=document.getElementById("menu");
+  m.style.display="block";
+  m.innerHTML=<button id="back-btn">⬅ Back</button><h2>${cat}</h2>;
+  menuData[cat].forEach(i=>{
+    const id = sanitizeId(i.n);
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'menu-item';
+    itemDiv.innerHTML = `
+      <span>${i.n} ₹${i.p}</span>
+      <div>
+        <input type="number" min="1" value="1" class="qty" id="q${id}">
+        <button class="add-btn" data-name="${i.n}" data-price="${i.p}" data-qty="q${id}">Add</button>
+      </div>`;
+    m.appendChild(itemDiv);
+  });
+
+  // Attach event listeners
+  document.getElementById('back-btn').addEventListener('click', goHome);
+  document.querySelectorAll('.add-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const name = btn.getAttribute('data-name');
+      const price = parseInt(btn.getAttribute('data-price'));
+      const qtyId = btn.getAttribute('data-qty');
+      const qty = parseInt(document.getElementById(qtyId).value);
+      add(name,price,qty);
+    });
+  });
 }
 
-function decrease(id) {
-  let qty = document.getElementById(id);
-  if (Number(qty.innerText) > 1) {
-    qty.innerText = Number(qty.innerText) - 1;
-  }
+// Go back to home
+function goHome(){
+  document.getElementById("menu").style.display="none";
+  document.getElementById("home").style.display="grid";
 }
+
+// Add to cart
+function add(n,p,q){
+  const f = cart.find(i=>i.n===n);
+  if(f) f.q+=q; else cart.push({n,p,q});
+  updateCart();
+}
+
+// Update Cart
+function updateCart(){
+  let t=0,c=0;
+  cart.forEach(i=>{t+=i.p*i.q;c+=i.q;});
+  document.getElementById("cart-info").innerText=${c} Items | ₹${t};
+  document.getElementById("cart-bar").style.display="block";
+}
+
+// Open Form
+function openForm(){
+  document.getElementById("form").style.display="flex";
+  let s="",t=0;
+  cart.forEach(i=>{s+=${i.n} x${i.q} = ₹${i.p*i.q}\n; t+=i.p*i.q;});
+  document.getElementById("summary").innerText = s + \nTotal ₹${t};
+}
+
+// Send WhatsApp
+document.getElementById('place-order').addEventListener('click',sendWhatsApp);
+document.getElementById('order-btn').addEventListener('click',openForm);
+
+function sendWhatsApp(){
+  const name=document.getElementById("name").value;
+  const phone=document.getElementById("phone").value;
+  const addr=document.getElementById("address").value;
+  const type=document.getElementById("type").value;
+  let t=0,msg=Order\nName:${name}\nPhone:${phone}\nAddress:${addr}\nType:${type}\n\n;
+  cart.forEach(i=>{msg+=${i.n} x${i.q} ₹${i.p*i.q}\n; t+=i.p*i.q;});
+  if(type=="Home Delivery"){t+=50; msg+="Delivery ₹50\n";}
+  msg+=Total ₹${t};
+  window.open(https://wa.me/918770473265?text=${encodeURIComponent(msg)});
+}
+
+// Attach category buttons
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const cat = btn.getAttribute('data-cat');
+    openMenu(cat);
+  });
+});
 </script>
 
 </body>
